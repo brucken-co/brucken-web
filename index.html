@@ -20,7 +20,10 @@
                 <img src="assets/images/Logo Crop.PNG" alt="BRÜCKEN Logo" class="hero-logo">
                 <h1 class="hero-title">Transform Data Into Business Decisions</h1>
                 <p class="hero-subtitle">A powerful decisions engine that converts complex data into clear, actionable business intelligence</p>
-                <button class="cta-button primary" onclick="scrollToContact()">Get Started</button>
+                <div class="cta-buttons">
+                    <button class="cta-button primary" onclick="scrollToContact()">Request a Proposal</button>
+                    <a href="https://outlook.office.com/bookwithme/user/5ab278d9e15b4c3c904015c88078cbd0@brucken.com.br/meetingtype/x0If2nmsTEKxb4X2e7Q0lg2?anonymous&ismsaljsauthenabled&ep=mlink" class="cta-button secondary" target="_blank" rel="noopener noreferrer">Talk to Sales</a>
+                </div>
             </div>
         </div>
         <div class="hero-background"></div>
@@ -156,10 +159,10 @@
     <!-- Contact/CTA Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title centered">Ready to Transform Your Data?</h2>
-            <p class="contact-subtitle">Get started with BRÜCKEN and unlock the power of intelligent decision-making</p>
+            <h2 class="section-title centered">Request a Proposal</h2>
+            <p class="contact-subtitle">Tell us about your data challenges and we'll create a customized solution for your business</p>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xwpkglnk" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Name *</label>
@@ -178,11 +181,16 @@
                     <label for="message">Message *</label>
                     <textarea id="message" name="message" rows="5" required placeholder="Tell us about your data challenges..."></textarea>
                 </div>
-                <button type="submit" class="cta-button primary">Send Message</button>
+                <button type="submit" class="cta-button primary">Submit Request</button>
             </form>
 
             <div class="form-success" id="formSuccess" style="display: none;">
-                <p>Thank you! We'll be in touch soon.</p>
+                <p>Thank you! We'll be in touch soon with your customized proposal.</p>
+            </div>
+
+            <div class="contact-alternative">
+                <p class="alternative-text">Prefer to speak with our team directly?</p>
+                <a href="https://outlook.office.com/bookwithme/user/5ab278d9e15b4c3c904015c88078cbd0@brucken.com.br/meetingtype/x0If2nmsTEKxb4X2e7Q0lg2?anonymous&ismsaljsauthenabled&ep=mlink" class="cta-button secondary" target="_blank" rel="noopener noreferrer">Talk to Sales</a>
             </div>
         </div>
     </section>

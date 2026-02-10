@@ -135,6 +135,31 @@ section {
     transform: translateY(0);
 }
 
+.cta-button.secondary {
+    background: var(--white);
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    box-shadow: 0 2px 8px rgba(43, 122, 181, 0.2);
+}
+
+.cta-button.secondary:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 122, 181, 0.3);
+}
+
+.cta-button.secondary:active {
+    transform: translateY(0);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* ========================================
    HERO SECTION
    ======================================== */
@@ -433,6 +458,27 @@ section {
     border-radius: var(--border-radius);
     text-align: center;
     font-weight: 600;
+}
+
+.contact-alternative {
+    max-width: 700px;
+    margin: var(--spacing-xl) auto 0;
+    padding: var(--spacing-lg);
+    text-align: center;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.alternative-text {
+    font-size: 18px;
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-alternative .cta-button {
+    display: inline-block;
+    width: auto;
 }
 
 /* ========================================

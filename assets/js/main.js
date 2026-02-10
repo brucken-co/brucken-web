@@ -20,58 +20,62 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value
-            };
-
             // Basic validation
-            if (!formData.name || !formData.email || !formData.message) {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
                 alert('Please fill in all required fields.');
                 return;
             }
 
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formData.email)) {
+            if (!emailRegex.test(email)) {
                 alert('Please enter a valid email address.');
                 return;
             }
 
-            // Simulate form submission (replace with actual backend call)
-            console.log('Form submitted:', formData);
+            // Prepare form data for Formspree
+            const formData = new FormData(contactForm);
 
-            // Show success message
-            contactForm.style.display = 'none';
-            formSuccess.style.display = 'block';
+            // Submit to Formspree
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
 
-            // Optional: Send to backend
-            // fetch('/api/contact', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(formData)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     contactForm.style.display = 'none';
-            //     formSuccess.style.display = 'block';
-            // })
-            // .catch(error => {
-            //     console.error('Error:', error);
-            //     alert('There was an error submitting your form. Please try again.');
-            // });
+                    // Reset form
+                    contactForm.reset();
 
-            // For demonstration: reset after 5 seconds
-            setTimeout(function() {
-                contactForm.reset();
-                contactForm.style.display = 'block';
-                formSuccess.style.display = 'none';
-            }, 5000);
+                    // Hide success message and show form again after 8 seconds
+                    setTimeout(function() {
+                        contactForm.style.display = 'block';
+                        formSuccess.style.display = 'none';
+                    }, 8000);
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert('Error: ' + data.errors.map(error => error.message).join(', '));
+                        } else {
+                            alert('There was an error submitting your form. Please try again.');
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again or email us directly at g.benito@brucken.com.br');
+            });
         });
     }
 
