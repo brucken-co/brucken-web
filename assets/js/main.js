@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const message = document.getElementById('message').value;
 
             if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
+                alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
 
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
+                alert('Por favor, insira um endereço de e-mail válido.');
                 return;
             }
 
@@ -65,16 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     response.json().then(data => {
                         if (Object.hasOwn(data, 'errors')) {
-                            alert('Error: ' + data.errors.map(error => error.message).join(', '));
+                            alert('Erro: ' + data.errors.map(error => error.message).join(', '));
                         } else {
-                            alert('There was an error submitting your form. Please try again.');
+                            alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
                         }
                     });
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again or email us directly at g.benito@brucken.com.br');
+                alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente ou envie um e-mail diretamente para g.benito@brucken.com.br');
             });
         });
     }
