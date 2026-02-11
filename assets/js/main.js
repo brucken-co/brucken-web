@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         // Add fade-in animation for elements as they come into view
-        const elements = document.querySelectorAll('.benefit-card, .step, .testimonial');
+        const elements = document.querySelectorAll('.benefit-card, .step, .sector-card');
         elements.forEach(function(element) {
             const elementTop = element.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 
     // Initialize fade-in elements with initial state
-    const fadeElements = document.querySelectorAll('.benefit-card, .step, .testimonial');
+    const fadeElements = document.querySelectorAll('.benefit-card, .step, .sector-card');
     fadeElements.forEach(function(element) {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
