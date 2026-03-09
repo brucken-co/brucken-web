@@ -79,15 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sticky header shadow on scroll
-    const siteHeader = document.getElementById('siteHeader');
     let lastScrollTop = 0;
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (siteHeader) {
-            siteHeader.classList.toggle('scrolled', scrollTop > 10);
-        }
 
         // Add fade-in animation for elements as they come into view
         const elements = document.querySelectorAll('.benefit-card, .step, .sector-card');
