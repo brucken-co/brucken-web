@@ -161,6 +161,77 @@ section {
 }
 
 /* ========================================
+   STICKY HEADER
+   ======================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: box-shadow var(--transition-medium);
+}
+
+.site-header.scrolled {
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.nav-logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-lg);
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--dark-navy);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-cta {
+    padding: 10px 24px;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+/* Offset anchor sections so sticky header doesn't cover content */
+section[id] {
+    scroll-margin-top: 64px;
+}
+
+/* Push body down to account for fixed header */
+body {
+    padding-top: 64px;
+}
+
+/* ========================================
    HERO SECTION
    ======================================== */
 .hero {
@@ -550,6 +621,10 @@ section {
 
 /* Tablet (768px and below) */
 @media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
     :root {
         --font-size-h1: 36px;
         --font-size-h2: 28px;
