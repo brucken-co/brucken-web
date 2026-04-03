@@ -1,6 +1,6 @@
 /**
  * BRÜCKEN Landing Page
- * Main JavaScript file for interactions and form handling
+ * Main JavaScript file for interactions
  */
 
 // Smooth scroll to contact section
@@ -11,74 +11,7 @@ function scrollToContact() {
     }
 }
 
-// Form handling
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Basic validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (!name || !email || !message) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Por favor, insira um endereço de e-mail válido.');
-                return;
-            }
-
-            // Prepare form data for Formspree
-            const formData = new FormData(contactForm);
-
-            // Submit to Formspree
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message
-                    contactForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-
-                    // Reset form
-                    contactForm.reset();
-
-                    // Hide success message and show form again after 8 seconds
-                    setTimeout(function() {
-                        contactForm.style.display = 'block';
-                        formSuccess.style.display = 'none';
-                    }, 8000);
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert('Erro: ' + data.errors.map(error => error.message).join(', '));
-                        } else {
-                            alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
-                        }
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente ou envie um e-mail diretamente para g.benito@brucken.com.br');
-            });
-        });
-    }
-
     let lastScrollTop = 0;
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
