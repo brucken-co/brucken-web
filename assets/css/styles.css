@@ -545,6 +545,104 @@ section {
 }
 
 /* ========================================
+   ENGAGEMENT MODELS SECTION
+   ======================================== */
+.engagement-models {
+    background-color: var(--gray-100);
+}
+
+.engagement-subtitle {
+    text-align: center;
+    font-size: 20px;
+    color: var(--gray-600);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+    line-height: 1.6;
+}
+
+.engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    align-items: start;
+}
+
+.engagement-card {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+}
+
+.engagement-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.engagement-icon {
+    margin-bottom: var(--spacing-sm);
+}
+
+.engagement-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(43, 122, 181, 0.1);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+    width: fit-content;
+}
+
+.engagement-tag--tech {
+    background: rgba(245, 166, 35, 0.15);
+    color: #c27d0e;
+}
+
+.engagement-title {
+    color: var(--dark-navy);
+    margin-bottom: var(--spacing-sm);
+    font-size: 22px;
+}
+
+.engagement-description {
+    color: var(--gray-600);
+    font-size: 16px;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.engagement-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--gray-300);
+    padding-top: var(--spacing-md);
+}
+
+.engagement-highlights li {
+    color: var(--gray-600);
+    font-size: 15px;
+    padding: 6px 0 6px 20px;
+    position: relative;
+}
+
+.engagement-highlights li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 
@@ -585,6 +683,10 @@ section {
 
     .sectors-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .engagement-grid {
+        grid-template-columns: 1fr;
     }
 }
 
