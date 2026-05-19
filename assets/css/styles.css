@@ -605,6 +605,11 @@ section {
     color: #c27d0e;
 }
 
+.engagement-tag--full {
+    background: rgba(26, 26, 46, 0.08);
+    color: var(--dark-navy);
+}
+
 .engagement-title {
     color: var(--dark-navy);
     margin-bottom: var(--spacing-sm);
