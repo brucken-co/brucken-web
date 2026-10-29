@@ -1,0 +1,141 @@
+---
+import { site, nav } from '../site';
+import Icon from './Icon.astro';
+---
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a href="/" class="site-header__logo" aria-label="Brücken — página inicial">
+            <img src={site.logo} alt="Brücken" width="96" height="45" />
+        </a>
+
+        <nav class="site-nav" aria-label="Principal">
+            <ul role="list">
+                {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+            </ul>
+        </nav>
+
+        <a href={site.bookingUrl} class="btn btn--primary site-header__cta" target="_blank" rel="noopener noreferrer" data-track="header">
+            Agendar conversa
+        </a>
+
+        <details class="mobile-nav">
+            <summary aria-label="Abrir menu"><Icon name="Menu" size={22} /></summary>
+            <div class="mobile-nav__panel">
+                <ul role="list">
+                    {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+                </ul>
+                <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-track="mobile-menu">
+                    Agendar conversa
+                </a>
+            </div>
+        </details>
+    </div>
+</header>
+
+<script>
+    // Fecha o menu mobile ao escolher um item
+    document.querySelectorAll('.mobile-nav a').forEach((link) => {
+        link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
+    });
+</script>
+
+<style>
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(12px);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .site-header__inner {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        height: var(--header-h);
+    }
+
+    .site-header__logo img {
+        height: 45px;
+        width: auto;
+    }
+
+    .site-nav {
+        margin-right: auto;
+    }
+
+    .site-nav ul {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .site-nav a,
+    .mobile-nav a:not(.btn) {
+        color: var(--ink-2);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .site-nav a:hover {
+        color: var(--ink);
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    @media (max-width: 860px) {
+        .site-nav,
+        .site-header__cta {
+            display: none;
+        }
+
+        .site-header__inner {
+            justify-content: space-between;
+        }
+
+        .mobile-nav {
+            display: block;
+        }
+
+        .mobile-nav summary {
+            list-style: none;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .mobile-nav summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .mobile-nav__panel {
+            position: absolute;
+            inset: var(--header-h) 0 auto 0;
+            padding: 1rem var(--gutter) 1.5rem;
+            background: var(--bg);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 12px 24px rgba(15, 27, 45, 0.08);
+        }
+
+        .mobile-nav__panel ul {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav__panel li a {
+            display: block;
+            padding: 0.75rem 0;
+            font-size: var(--text-base);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .mobile-nav__panel .btn {
+            width: 100%;
+        }
+    }
+</style>
