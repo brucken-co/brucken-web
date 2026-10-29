@@ -1,0 +1,197 @@
+---
+// Ilustração do produto: uma decisão de crédito via API (dados fictícios)
+const signals = [
+    { label: 'Histórico de vendas na plataforma', value: 82 },
+    { label: 'Recorrência de pedidos', value: 74 },
+    { label: 'Bureau de crédito', value: 61 },
+];
+---
+<figure class="panel" aria-label="Exemplo ilustrativo de uma decisão de crédito pela API da Brücken">
+    <div class="panel__bar">
+        <span class="panel__method">POST</span>
+        <span class="panel__path">/v1/decisoes</span>
+        <span class="panel__latency">212 ms</span>
+    </div>
+
+    <div class="panel__body">
+        <div class="panel__row panel__row--head">
+            <div>
+                <span class="panel__label">Cliente</span>
+                <span class="panel__value">Loja parceira #4821</span>
+            </div>
+            <span class="panel__status">Aprovado</span>
+        </div>
+
+        <div class="panel__grid">
+            <div>
+                <span class="panel__label">Limite</span>
+                <span class="panel__number">R$ 48.000</span>
+            </div>
+            <div>
+                <span class="panel__label">Prazo</span>
+                <span class="panel__number">90 dias</span>
+            </div>
+            <div>
+                <span class="panel__label">Faixa de risco</span>
+                <span class="panel__number">B2</span>
+            </div>
+        </div>
+
+        <div class="panel__signals">
+            <span class="panel__label">Sinais considerados</span>
+            <ul role="list">
+                {signals.map((s) => (
+                    <li>
+                        <span>{s.label}</span>
+                        <span class="panel__meter" style={`--v:${s.value}%`}><span></span></span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        <div class="panel__foot">
+            <span>Política v3.2</span>
+            <span>Decisão rastreável · ID 7f3a…c91</span>
+        </div>
+    </div>
+    <figcaption class="visually-hidden">Exemplo ilustrativo com dados fictícios.</figcaption>
+</figure>
+
+<style>
+    .panel {
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 1px 2px rgba(15, 27, 45, 0.04), 0 24px 48px -24px rgba(15, 27, 45, 0.18);
+        overflow: hidden;
+        font-size: var(--text-sm);
+    }
+
+    .panel__bar {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--ink);
+        color: #C9D3E0;
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+    }
+
+    .panel__method {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    .panel__latency {
+        margin-left: auto;
+        color: #8FD5A6;
+    }
+
+    .panel__body {
+        padding: 1.25rem;
+        display: grid;
+        gap: 1.25rem;
+    }
+
+    .panel__row--head {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .panel__label {
+        display: block;
+        font-size: var(--text-xs);
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+    }
+
+    .panel__value {
+        color: var(--ink);
+        font-weight: 600;
+    }
+
+    .panel__status {
+        padding: 0.25rem 0.625rem;
+        border-radius: 999px;
+        background: #E7F5EC;
+        color: var(--success);
+        font-size: var(--text-xs);
+        font-weight: 600;
+    }
+
+    .panel__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+    }
+
+    .panel__grid > div {
+        padding: 0.875rem 1rem;
+    }
+
+    .panel__grid > div + div {
+        border-left: 1px solid var(--line);
+    }
+
+    .panel__number {
+        color: var(--ink);
+        font-size: var(--text-lg);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
+    }
+
+    .panel__signals li {
+        display: grid;
+        grid-template-columns: 1fr 96px;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.375rem 0;
+        color: var(--ink-2);
+    }
+
+    .panel__meter {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--bg-subtle);
+        overflow: hidden;
+    }
+
+    .panel__meter span {
+        display: block;
+        width: var(--v);
+        height: 100%;
+        background: var(--brand);
+        border-radius: inherit;
+    }
+
+    .panel__foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+    }
+
+    @media (max-width: 420px) {
+        .panel__grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .panel__grid > div:last-child {
+            grid-column: 1 / -1;
+            border-left: 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .panel__foot span:last-child {
+            display: none;
+        }
+    }
+</style>
