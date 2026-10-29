@@ -1,10 +1,10 @@
-# BRÜCKEN - Landing Page
+# Brücken - Landing Page
 
-A high-performance, conversion-focused landing page for BRÜCKEN, a decisions engine that transforms data into business intelligence.
+A high-performance, conversion-focused landing page for Brücken, a decisions engine that transforms data into business intelligence.
 
 ## Overview
 
-This landing page showcases BRÜCKEN's core offering: an intelligent decisions engine that bridges the gap between complex data and actionable business insights. Built with pure HTML, CSS, and JavaScript for maximum performance and minimal dependencies.
+This landing page showcases Brücken's core offering: an intelligent decisions engine that bridges the gap between complex data and actionable business insights. Built with pure HTML, CSS, and JavaScript for maximum performance and minimal dependencies.
 
 ## Features
 
@@ -20,15 +20,15 @@ This landing page showcases BRÜCKEN's core offering: an intelligent decisions e
 ```
 brucken-web/
 ├── index.html              # Main landing page
+├── favicon.svg             # Site icon
+├── robots.txt              # Crawler rules
+├── sitemap.xml             # Sitemap for search engines
+├── CNAME                   # Custom domain (brucken.com.br) for GitHub Pages
 ├── assets/
-│   ├── css/
-│   │   └── styles.css      # Complete stylesheet with responsive design
-│   ├── js/
-│   │   └── main.js         # Interaction scripts and form handling
-│   └── images/
-│       ├── logo.svg        # BRÜCKEN logo (placeholder - replace with actual)
-│       └── README.md       # Instructions for logo replacement
-├── .gitignore              # Git ignore patterns
+│   ├── css/styles.css      # Complete stylesheet with responsive design
+│   ├── js/main.js          # Scroll animations and GA4 event tracking
+│   ├── images/             # Logo
+│   └── docs/               # Privacy policy (LGPD)
 └── README.md               # This file
 ```
 
@@ -60,29 +60,9 @@ brucken-web/
 
 ### Customize Content
 
-#### Replace the Logo
+#### Logo
 
-1. Place your actual BRÜCKEN logo in `assets/images/`
-2. Supported formats: SVG (recommended), PNG, or JPG
-3. Update the `src` attribute in `index.html` if using a different filename:
-   ```html
-   <img src="assets/images/your-logo.svg" alt="BRÜCKEN Logo">
-   ```
-
-#### Update Contact Form
-
-The contact form currently uses client-side validation and logs data to console. To connect to a backend:
-
-1. Open `assets/js/main.js`
-2. Find the form submission handler (line ~30)
-3. Uncomment and customize the `fetch()` call to your API endpoint
-
-**Alternative: Use a Form Service**
-
-Popular options:
-- [Formspree](https://formspree.io/) - Simple form handling
-- [Netlify Forms](https://www.netlify.com/products/forms/) - If hosting on Netlify
-- [Google Forms](https://www.google.com/forms/about/) - Free with Google account
+The logo used on the page is `assets/images/remove_bg_para_fundo_claro.png`. It is also the Open Graph image used when the link is shared.
 
 #### Modify Colors
 
@@ -106,7 +86,7 @@ Change these values to match your brand.
 1. Push your code to GitHub:
    ```bash
    git add .
-   git commit -m "Initial commit: BRÜCKEN landing page"
+   git commit -m "Initial commit: Brücken landing page"
    git push origin main
    ```
 
@@ -146,47 +126,31 @@ Change these values to match your brand.
 
 The landing page includes these sections:
 
-1. **Hero Section** - Main headline and primary CTA
-2. **Value Proposition** - Explains what BRÜCKEN does
+1. **Hero Section** - Main headline and primary CTAs
+2. **Value Proposition** - Explains what Brücken does
 3. **Benefits** - Four key benefit cards
 4. **How It Works** - Three-step process visualization
-5. **Social Proof** - Statistics and testimonials
-6. **Contact Form** - Lead capture with validation
-7. **Footer** - Links and copyright
+5. **Engagement Models** - Consultoria, Motor de Decisão and Full Service
+6. **Sectors** - Target verticals
+7. **Contact** - Meeting booking, WhatsApp and LinkedIn links
+8. **Footer** - Links, privacy policy (LGPD) and copyright
 
 To modify content, edit the HTML in `index.html` for each section.
 
-### Adding Analytics
+### Analytics
 
-To add Google Analytics or other tracking:
-
-1. Add tracking script to `<head>` in `index.html`:
-   ```html
-   <!-- Google Analytics -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-   <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
-     gtag('config', 'GA_MEASUREMENT_ID');
-   </script>
-   ```
-
-2. The `main.js` file includes a `trackEvent()` function ready for custom event tracking
+Google Analytics 4 (`G-LMKF2JBQ64`) is loaded in `<head>`. `main.js` sends a `cta_click` event for every CTA and the floating WhatsApp button.
 
 ### SEO Optimization
 
-The page includes basic SEO optimization:
-- Semantic HTML5 elements
-- Meta descriptions and keywords
-- Open Graph tags (add if needed for social sharing)
-- Fast loading performance
+The page includes:
+- Semantic HTML5 (`<main>`, heading hierarchy)
+- Meta description, canonical URL and favicon
+- Open Graph / Twitter tags for link previews
+- JSON-LD `Organization` structured data
+- `robots.txt` and `sitemap.xml`
 
-**To improve SEO:**
-1. Add Open Graph meta tags in `<head>`
-2. Create a `sitemap.xml` file
-3. Add a `robots.txt` file
-4. Submit to Google Search Console
+Remember to update `<lastmod>` in `sitemap.xml` when the content changes.
 
 ## Browser Support
 
@@ -234,7 +198,7 @@ For questions or issues:
 
 ## License
 
-© 2026 BRÜCKEN. All rights reserved.
+© 2026 Brücken. All rights reserved.
 
 ---
 
