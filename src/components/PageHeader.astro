@@ -22,8 +22,8 @@ const { breadcrumbs, eyebrow, title, lead, cta = true } = Astro.props;
         <p class="page-header__lead">{lead}</p>
         {cta && (
             <div class="page-header__actions">
-                <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-track="page-header">
-                    Agendar conversa <Icon name="ArrowRight" size={18} />
+                <a href={site.contactUrl} class="btn btn--primary" data-track="page-header">
+                    {site.ctaLabel} <Icon name="ArrowRight" size={18} />
                 </a>
             </div>
         )}

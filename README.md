@@ -23,7 +23,7 @@ brucken-web/
 ├── astro.config.mjs          # URL do site e geração do sitemap
 ├── public/                   # Copiado como está: favicon, robots.txt, llms.txt, imagens, PDF da LGPD
 ├── src/
-│   ├── site.ts               # Dados institucionais (links de agendamento, WhatsApp, GA4…)
+│   ├── site.ts               # Dados institucionais (CTA, WhatsApp, GA4, HubSpot…)
 │   ├── styles/global.css     # Design system: cores, tipografia, botões, layout
 │   ├── layouts/BaseLayout.astro  # <head>, SEO, Open Graph, JSON-LD, GA4, header e footer
 │   ├── components/           # Header, Footer, Icon (Lucide), DecisionPanel, CookieConsent
@@ -43,6 +43,23 @@ Use sempre os tokens de `src/styles/global.css` em vez de cores e tamanhos solto
 ## Deploy
 
 Cada push na `main` dispara o workflow `Deploy to GitHub Pages`; PRs rodam só o build. Em Settings → Pages, a origem é **GitHub Actions** e o domínio personalizado (`brucken.com.br`) fica configurado lá, não em arquivo `CNAME`.
+
+## Formulário de contato (HubSpot)
+
+O formulário de `/contato/` (`src/components/ContactForm.astro`) envia os dados direto para a [API de formulários do HubSpot](https://developers.hubspot.com/docs/api/marketing/forms), sem carregar scripts do HubSpot na página. Após o envio, o visitante vai para `/contato/obrigado/` (fora do sitemap, com `noindex`) e o GA4 recebe o evento `generate_lead`.
+
+Os códigos do formulário ficam em `src/site.ts` → `hubspot.portalId` e `hubspot.formId`. Enquanto estiverem vazios, o formulário mostra uma mensagem pedindo contato pelo WhatsApp.
+
+O formulário no HubSpot precisa ter estes campos (nome interno):
+
+| Campo no site | Propriedade no HubSpot |
+|---|---|
+| Nome | `firstname` e `lastname` (o site separa o primeiro nome do resto) |
+| E-mail corporativo | `email` |
+| Empresa / plataforma | `company` |
+| Segmento | `segmento` (propriedade personalizada, texto) |
+| Tamanho da base de clientes | `tamanho_da_base` (propriedade personalizada, texto) |
+| O que você quer avaliar? | `message` |
 
 ## Analytics
 

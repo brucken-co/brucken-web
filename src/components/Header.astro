@@ -14,8 +14,8 @@ import Icon from './Icon.astro';
             </ul>
         </nav>
 
-        <a href={site.bookingUrl} class="btn btn--primary site-header__cta" target="_blank" rel="noopener noreferrer" data-track="header">
-            Agendar conversa
+        <a href={site.contactUrl} class="btn btn--primary site-header__cta" data-track="header">
+            {site.ctaLabelShort}
         </a>
 
         <details class="mobile-nav">
@@ -24,8 +24,8 @@ import Icon from './Icon.astro';
                 <ul role="list">
                     {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
                 </ul>
-                <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-track="mobile-menu">
-                    Agendar conversa
+                <a href={site.contactUrl} class="btn btn--primary" data-track="mobile-menu">
+                    {site.ctaLabelShort}
                 </a>
             </div>
         </details>

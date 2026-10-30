@@ -11,7 +11,7 @@ interface Props {
 
 const {
     title = 'Vamos avaliar o potencial de crédito da sua base?',
-    text = 'Uma conversa de 30 minutos com nossos especialistas para entender seus dados e seus clientes.',
+    text = `Conte um pouco sobre a sua plataforma. Retornamos em ${site.responseTime} com os próximos passos.`,
     id,
     track = 'cta',
 } = Astro.props;
@@ -23,8 +23,8 @@ const {
             <p>{text}</p>
         </div>
         <div class="cta__actions">
-            <a href={site.bookingUrl} class="btn btn--on-dark" target="_blank" rel="noopener noreferrer" data-track={track}>
-                <Icon name="CalendarDays" size={18} /> Agendar conversa
+            <a href={site.contactUrl} class="btn btn--on-dark" data-track={track}>
+                {site.ctaLabel} <Icon name="ArrowRight" size={18} />
             </a>
             <a href={site.whatsappUrl} class="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" data-track={track}>
                 <Icon name="MessageCircle" size={18} /> WhatsApp
