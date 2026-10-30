@@ -1,0 +1,62 @@
+---
+// Topo das páginas internas: trilha, título e parágrafo de abertura
+import Breadcrumbs from './Breadcrumbs.astro';
+import Icon from './Icon.astro';
+import { site } from '../site';
+
+interface Props {
+    breadcrumbs: { label: string; href?: string }[];
+    eyebrow?: string;
+    title: string;
+    lead: string;
+    cta?: boolean;
+}
+
+const { breadcrumbs, eyebrow, title, lead, cta = true } = Astro.props;
+---
+<header class="page-header">
+    <div class="container">
+        <Breadcrumbs items={breadcrumbs} />
+        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+        <h1>{title}</h1>
+        <p class="page-header__lead">{lead}</p>
+        {cta && (
+            <div class="page-header__actions">
+                <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-track="page-header">
+                    Agendar conversa <Icon name="ArrowRight" size={18} />
+                </a>
+            </div>
+        )}
+    </div>
+</header>
+
+<style>
+    .page-header {
+        padding-block: clamp(2.5rem, 2rem + 2vw, 4rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+        border-bottom: 1px solid var(--line);
+        background:
+            linear-gradient(to bottom, transparent 60%, var(--bg)),
+            radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 24px 24px;
+    }
+
+    .page-header :global(.breadcrumbs) {
+        margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+    }
+
+    .page-header h1 {
+        max-width: 48rem;
+        font-size: var(--text-3xl);
+        letter-spacing: -0.03em;
+    }
+
+    .page-header__lead {
+        max-width: 40rem;
+        margin-top: 1.5rem;
+        font-size: var(--text-lg);
+        color: var(--muted);
+    }
+
+    .page-header__actions {
+        margin-top: 2rem;
+    }
+</style>

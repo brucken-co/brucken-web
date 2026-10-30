@@ -13,6 +13,14 @@ Como funciona: (1) a Brücken conecta as fontes de dados existentes via API ou a
 ## Páginas
 
 - [Página inicial](https://brucken.com.br/): visão geral das soluções, como funciona e setores atendidos
+- [Soluções](https://brucken.com.br/solucoes/): os três formatos de atuação
+  - [Consultoria de crédito](https://brucken.com.br/solucoes/consultoria-de-credito/)
+  - [Motor de decisão](https://brucken.com.br/solucoes/motor-de-decisao/)
+  - [Full service](https://brucken.com.br/solucoes/full-service/)
+- [Setores](https://brucken.com.br/setores/): como o crédito embarcado se aplica a cada tipo de plataforma
+  - [Varejo e marketplace](https://brucken.com.br/setores/varejo-e-marketplace/)
+  - [ERP e SaaS](https://brucken.com.br/setores/erp-e-saas/)
+  - [Gig economy](https://brucken.com.br/setores/gig-economy/)
 - [Política de Privacidade e Proteção de Dados](https://brucken.com.br/privacidade/): tratamento de dados pessoais nos termos da LGPD e contato do Encarregado (DPO)
 
 ## Contato

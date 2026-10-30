@@ -19,8 +19,8 @@ export const site = {
 };
 
 export const nav = [
-    { label: 'Soluções', href: '/#solucoes' },
+    { label: 'Soluções', href: '/solucoes/' },
+    { label: 'Setores', href: '/setores/' },
     { label: 'Como funciona', href: '/#como-funciona' },
-    { label: 'Setores', href: '/#setores' },
     { label: 'Contato', href: '/#contato' },
 ];

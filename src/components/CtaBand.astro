@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../site';
+
+interface Props {
+    title?: string;
+    text?: string;
+    id?: string;
+    track?: string;
+}
+
+const {
+    title = 'Vamos avaliar o potencial de crédito da sua base?',
+    text = 'Uma conversa de 30 minutos com nossos especialistas para entender seus dados e seus clientes.',
+    id,
+    track = 'cta',
+} = Astro.props;
+---
+<section class="cta" id={id}>
+    <div class="container cta__inner">
+        <div>
+            <h2>{title}</h2>
+            <p>{text}</p>
+        </div>
+        <div class="cta__actions">
+            <a href={site.bookingUrl} class="btn btn--on-dark" target="_blank" rel="noopener noreferrer" data-track={track}>
+                <Icon name="CalendarDays" size={18} /> Agendar conversa
+            </a>
+            <a href={site.whatsappUrl} class="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" data-track={track}>
+                <Icon name="MessageCircle" size={18} /> WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .cta {
+        background: var(--ink);
+        color: #C9D3E0;
+        padding-block: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+    }
+
+    .cta__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.5rem;
+    }
+
+    .cta h2 {
+        color: #fff;
+        font-size: var(--text-2xl);
+        max-width: 36rem;
+    }
+
+    .cta p {
+        margin-top: 0.75rem;
+        max-width: 36rem;
+    }
+
+    .cta__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        flex: none;
+    }
+
+    @media (max-width: 960px) {
+        .cta__inner {
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .cta__actions .btn {
+            flex: 1 1 100%;
+        }
+    }
+</style>

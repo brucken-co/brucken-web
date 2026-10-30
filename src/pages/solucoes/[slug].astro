@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import Icon from '../../components/Icon.astro';
+import { solutions, type Solution } from '../../data/solutions';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../schema';
+
+export function getStaticPaths() {
+    return solutions.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+}
+
+interface Props {
+    solution: Solution;
+}
+
+const { solution } = Astro.props;
+const path = `/solucoes/${solution.slug}/`;
+const breadcrumbs = [
+    { label: 'Início', href: '/' },
+    { label: 'Soluções', href: '/solucoes/' },
+    { label: solution.name },
+];
+const others = solutions.filter((s) => s.slug !== solution.slug);
+---
+<BaseLayout
+    title={`${solution.name} - Brücken`}
+    description={solution.metaDescription}
+    schema={[
+        breadcrumbSchema(breadcrumbs, path),
+        serviceSchema(solution.name, solution.metaDescription, path),
+        faqSchema(solution.faq),
+    ]}
+>
+    <PageHeader breadcrumbs={breadcrumbs} eyebrow={solution.tag} title={solution.title} lead={solution.lead} />
+
+    <section class="section">
+        <div class="container split-section">
+            <div>
+                <span class="eyebrow">Para quem é</span>
+                <h2>Quando faz sentido</h2>
+            </div>
+            <ul class="check-list" role="list">
+                {solution.forWho.map((item) => (
+                    <li><Icon name="Check" size={18} strokeWidth={2} />{item}</li>
+                ))}
+            </ul>
+        </div>
+    </section>
+
+    <section class="section section--subtle">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">O que está incluído</span>
+                <h2>O que você recebe</h2>
+            </div>
+            <ol class="included" role="list">
+                {solution.included.map((item, i) => (
+                    <li>
+                        <span class="included__num">{String(i + 1).padStart(2, '0')}</span>
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container split-section">
+            <div>
+                <span class="eyebrow">Perguntas frequentes</span>
+                <h2>Dúvidas comuns</h2>
+            </div>
+            <Faq items={solution.faq} />
+        </div>
+    </section>
+
+    <section class="section section--subtle">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Outras soluções</span>
+                <h2>Outras formas de trabalhar juntos</h2>
+            </div>
+            <div class="others">
+                {others.map((s) => <SolutionCard solution={s} />)}
+            </div>
+        </div>
+    </section>
+
+    <CtaBand track={`solucao-${solution.slug}`} />
+</BaseLayout>
+
+<style>
+    .included {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 0;
+        list-style: none;
+    }
+
+    .included li {
+        padding: 1.75rem;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+    }
+
+    .included__num {
+        display: block;
+        margin-bottom: 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        color: var(--brand-ink);
+    }
+
+    .included h3 {
+        font-size: var(--text-lg);
+    }
+
+    .included p {
+        margin-top: 0.625rem;
+        color: var(--muted);
+        font-size: var(--text-sm);
+    }
+
+    .others {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    @media (max-width: 960px) {
+        .included {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .included,
+        .others {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
