@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Content } from '../content/politica-de-privacidade.md';
+import { site } from '../site';
+---
+<BaseLayout
+    title="Política de Privacidade e Proteção de Dados - Brücken"
+    description="Como a Brücken trata dados pessoais, nos termos da LGPD: bases legais, compartilhamento, retenção, direitos dos titulares e contato do Encarregado (DPO)."
+>
+    <article class="legal container">
+        <header class="legal__head">
+            <span class="eyebrow">Legal</span>
+            <h1>Política de Privacidade e Proteção de Dados</h1>
+            <p class="legal__meta">
+                Versão 1.0 · Última atualização: maio de 2026 ·{' '}
+                <a href={site.privacyPdfUrl} target="_blank" rel="noopener noreferrer">Baixar PDF</a>
+            </p>
+        </header>
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+    .legal {
+        max-width: calc(760px + 2 * var(--gutter));
+        padding-block: clamp(3rem, 2rem + 3vw, 5rem);
+    }
+
+    .legal__head {
+        padding-bottom: 2rem;
+        margin-bottom: 2.5rem;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .legal h1 {
+        font-size: var(--text-2xl);
+    }
+
+    .legal__meta {
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: var(--text-sm);
+    }
+</style>

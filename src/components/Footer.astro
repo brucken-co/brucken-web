@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
                 <ul role="list">
                     <li><a href="/#como-funciona">Como funciona</a></li>
                     <li><a href="/#setores">Setores</a></li>
-                    <li><a href={site.privacyUrl} target="_blank" rel="noopener noreferrer">Privacidade (LGPD)</a></li>
+                    <li><a href={site.privacyUrl}>Privacidade (LGPD)</a></li>
                 </ul>
             </nav>
 
@@ -40,6 +40,7 @@ const year = new Date().getFullYear();
 
         <div class="site-footer__legal">
             <p>&copy; {year} Brücken. Todos os direitos reservados.</p>
+            <a href="#" data-cookie-settings>Preferências de cookies</a>
         </div>
     </div>
 </footer>
@@ -91,6 +92,10 @@ const year = new Date().getFullYear();
     }
 
     .site-footer__legal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem 1.5rem;
         margin-top: 3rem;
         padding-top: 1.5rem;
         border-top: 1px solid var(--line);
