@@ -50,16 +50,20 @@ O formulário de `/contato/` (`src/components/ContactForm.astro`) envia os dados
 
 Os códigos do formulário ficam em `src/site.ts` → `hubspot.portalId` e `hubspot.formId`. Enquanto estiverem vazios, o formulário mostra uma mensagem pedindo contato pelo WhatsApp.
 
-O formulário no HubSpot precisa ter estes campos (nome interno):
+Os campos espelham o formulário "Contato Site" do HubSpot. `0-1` grava no **Contato** e `0-2` na **Empresa**:
 
 | Campo no site | Propriedade no HubSpot |
 |---|---|
-| Nome | `firstname` e `lastname` (o site separa o primeiro nome do resto) |
-| E-mail corporativo | `email` |
-| Empresa / plataforma | `company` |
-| Segmento | `segmento` (propriedade personalizada, texto) |
-| Tamanho da base de clientes | `tamanho_da_base` (propriedade personalizada, texto) |
-| O que você quer avaliar? | `message` |
+| Nome / Sobrenome | `0-1/firstname`, `0-1/lastname` |
+| E-mail corporativo | `0-1/email` |
+| Telefone (opcional; +55 por padrão) | `0-1/phone` |
+| O que você quer avaliar? | `0-1/message` |
+| Nome da empresa | `0-2/nome_da_empresa` |
+| Segmento | `0-2/segmento` |
+| Seus clientes são | `0-2/tipo_de_clientes` (PF ou PJ) |
+| Número aproximado de clientes | `0-2/tamanho_de_base` (número) |
+
+Se um campo mudar de nome no HubSpot, atualize `ContactForm.astro`: campos que não existem no formulário são descartados pelo HubSpot sem erro.
 
 ## Analytics
 

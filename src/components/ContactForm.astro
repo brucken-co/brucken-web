@@ -1,11 +1,14 @@
 ---
 // Formulário de contato enviado direto à API de formulários do HubSpot
 // (sem script do HubSpot na página, portanto sem cookies novos).
-// Os nomes dos campos precisam existir no formulário criado no HubSpot.
+// Os campos espelham o formulário "Contato Site" do HubSpot: objectTypeId 0-1 = Contato, 0-2 = Empresa.
 import { site } from '../site';
 
 const segments = ['Varejo ou marketplace', 'ERP ou SaaS', 'Gig ou creator economy', 'Outro'];
-const baseSizes = ['Até 1 mil clientes', '1 mil a 10 mil clientes', '10 mil a 100 mil clientes', 'Mais de 100 mil clientes'];
+const customerTypes = [
+    { value: 'PF', label: 'Pessoas físicas (PF)' },
+    { value: 'PJ', label: 'Empresas (PJ)' },
+];
 const consentText =
     'Concordo que a Brücken trate os dados acima para responder ao meu contato, conforme a Política de Privacidade.';
 ---
@@ -21,34 +24,63 @@ const consentText =
 >
     <div class="field-row">
         <div class="field">
-            <label for="cf-name">Nome</label>
-            <input id="cf-name" name="name" type="text" autocomplete="name" required />
+            <label for="cf-firstname">Nome</label>
+            <input id="cf-firstname" name="firstname" type="text" autocomplete="given-name" required />
         </div>
         <div class="field">
-            <label for="cf-email">E-mail corporativo</label>
-            <input id="cf-email" name="email" type="email" autocomplete="email" required />
+            <label for="cf-lastname">Sobrenome</label>
+            <input id="cf-lastname" name="lastname" type="text" autocomplete="family-name" required />
         </div>
-    </div>
-
-    <div class="field">
-        <label for="cf-company">Empresa / plataforma</label>
-        <input id="cf-company" name="company" type="text" autocomplete="organization" required />
     </div>
 
     <div class="field-row">
         <div class="field">
-            <label for="cf-segment">Segmento</label>
-            <select id="cf-segment" name="segmento" required>
+            <label for="cf-email">E-mail corporativo</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+            <label for="cf-phone">Telefone <span class="optional">(opcional)</span></label>
+            <div class="phone">
+                <span class="phone__prefix" aria-hidden="true">🇧🇷 +55</span>
+                <input
+                    id="cf-phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel-national"
+                    inputmode="tel"
+                    placeholder="(11) 99999-9999"
+                    pattern="[0-9()+\-\s]{8,20}"
+                    aria-describedby="cf-phone-hint"
+                />
+            </div>
+            <span id="cf-phone-hint" class="visually-hidden">Número do Brasil com DDD. Para outro país, comece com + e o código do país.</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="cf-company">Nome da empresa</label>
+        <input id="cf-company" name="nome_da_empresa" type="text" autocomplete="organization" required />
+    </div>
+
+    <div class="field">
+        <label for="cf-segment">Segmento</label>
+        <select id="cf-segment" name="segmento" required>
+            <option value="" selected disabled>Selecione</option>
+            {segments.map((s) => <option>{s}</option>)}
+        </select>
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label for="cf-type">Seus clientes são</label>
+            <select id="cf-type" name="tipo_de_clientes" required>
                 <option value="" selected disabled>Selecione</option>
-                {segments.map((s) => <option>{s}</option>)}
+                {customerTypes.map((t) => <option value={t.value}>{t.label}</option>)}
             </select>
         </div>
         <div class="field">
-            <label for="cf-size">Tamanho da base de clientes</label>
-            <select id="cf-size" name="tamanho_da_base" required>
-                <option value="" selected disabled>Selecione</option>
-                {baseSizes.map((s) => <option>{s}</option>)}
-            </select>
+            <label for="cf-size">Número aproximado de clientes</label>
+            <input id="cf-size" name="tamanho_de_base" type="number" inputmode="numeric" min="0" step="1" placeholder="Ex.: 5000" required />
         </div>
     </div>
 
@@ -82,6 +114,14 @@ const consentText =
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const whatsapp = form.dataset.whatsapp;
 
+    // Brasil (+55) por padrão; números que já começam com + são mantidos
+    function normalizePhone(raw: string) {
+        if (!raw) return '';
+        if (raw.startsWith('+')) return '+' + raw.slice(1).replace(/\D/g, '');
+        const digits = raw.replace(/\D/g, '').replace(/^0+/, '');
+        return digits ? `+55${digits}` : '';
+    }
+
     function showError(message: string) {
         errorBox.innerHTML = message;
         errorBox.hidden = false;
@@ -109,16 +149,19 @@ const consentText =
             return;
         }
 
-        const fullName = String(data.get('name')).trim();
-        const [firstname, ...rest] = fullName.split(/\s+/);
+        const value = (name: string) => String(data.get(name) ?? '').trim();
+        const contact = (name: string, v = value(name)) => ({ objectTypeId: '0-1', name, value: v });
+        const company = (name: string, v = value(name)) => ({ objectTypeId: '0-2', name, value: v });
         const fields = [
-            { name: 'firstname', value: firstname },
-            { name: 'lastname', value: rest.join(' ') },
-            { name: 'email', value: String(data.get('email')).trim() },
-            { name: 'company', value: String(data.get('company')).trim() },
-            { name: 'segmento', value: String(data.get('segmento')) },
-            { name: 'tamanho_da_base', value: String(data.get('tamanho_da_base')) },
-            { name: 'message', value: String(data.get('message') ?? '').trim() },
+            contact('firstname'),
+            contact('lastname'),
+            contact('email'),
+            contact('phone', normalizePhone(value('phone'))),
+            contact('message'),
+            company('nome_da_empresa'),
+            company('segmento'),
+            company('tipo_de_clientes'),
+            company('tamanho_de_base'),
         ].filter((f) => f.value);
 
         submit.disabled = true;
@@ -143,7 +186,7 @@ const consentText =
 
             window.gtag?.('event', 'generate_lead', {
                 segmento: data.get('segmento'),
-                tamanho_da_base: data.get('tamanho_da_base'),
+                tipo_de_clientes: data.get('tipo_de_clientes'),
             });
             location.href = successUrl!;
         } catch (err) {
@@ -202,6 +245,28 @@ const consentText =
 
     .field textarea {
         resize: vertical;
+    }
+
+    .phone {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .phone__prefix {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 0.75rem;
+        border: 1px solid var(--line-strong);
+        border-right: 0;
+        border-radius: var(--radius) 0 0 var(--radius);
+        background: var(--bg-subtle);
+        color: var(--ink-2);
+        font-size: var(--text-sm);
+        white-space: nowrap;
+    }
+
+    .phone input {
+        border-radius: 0 var(--radius) var(--radius) 0;
     }
 
     .field input:focus-visible,
