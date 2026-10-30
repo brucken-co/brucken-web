@@ -2,7 +2,7 @@
 
 > A Brücken oferece crédito embarcado para plataformas B2B no Brasil: integra um motor de decisão de crédito à plataforma do cliente e usa os dados que essa plataforma já possui para oferecer crédito sob medida aos usuários dela, sem que o cliente precise construir a operação do zero.
 
-A Brücken atende varejo e marketplaces, ERPs e SaaS, e plataformas de gig economy. Trabalha em três formatos:
+A Brücken atende varejo e marketplaces, ERPs e SaaS, e plataformas de gig economy e creator economy (motoristas, entregadores, criadores de conteúdo, prestadores de serviço e freelancers). Trabalha em três formatos:
 
 - **Consultoria de crédito:** diagnóstico e estruturação da política de concessão, modelagem e critérios de risco, precificação e régua de cobrança.
 - **Motor de decisão:** engine embarcada via API REST (ou troca de arquivos), com decisões em tempo real (menos de 300 ms), integração com bureaus de crédito e fontes de dados próprias, e cada decisão rastreável. O cliente mantém o controle da política de crédito.
@@ -13,10 +13,18 @@ Como funciona: (1) a Brücken conecta as fontes de dados existentes via API ou a
 ## Páginas
 
 - [Página inicial](https://brucken.com.br/): visão geral das soluções, como funciona e setores atendidos
+- [Soluções](https://brucken.com.br/solucoes/): os três formatos de atuação
+  - [Consultoria de crédito](https://brucken.com.br/solucoes/consultoria-de-credito/)
+  - [Motor de decisão](https://brucken.com.br/solucoes/motor-de-decisao/)
+  - [Full service](https://brucken.com.br/solucoes/full-service/)
+- [Setores](https://brucken.com.br/setores/): como o crédito embarcado se aplica a cada tipo de plataforma
+  - [Varejo e marketplace](https://brucken.com.br/setores/varejo-e-marketplace/)
+  - [ERP e SaaS](https://brucken.com.br/setores/erp-e-saas/)
+  - [Gig economy](https://brucken.com.br/setores/gig-economy/)
 - [Política de Privacidade e Proteção de Dados](https://brucken.com.br/privacidade/): tratamento de dados pessoais nos termos da LGPD e contato do Encarregado (DPO)
 
 ## Contato
 
-- [Agendar conversa](https://outlook.office.com/bookwithme/user/5ab278d9e15b4c3c904015c88078cbd0@brucken.com.br/meetingtype/x0If2nmsTEKxb4X2e7Q0lg2?anonymous&ismsaljsauthenabled&ep=mlink)
+- [Formulário de contato](https://brucken.com.br/contato/): avaliação do potencial de crédito da sua plataforma, com retorno em até 1 semana
 - WhatsApp: +55 19 99666-1559
 - Site: https://brucken.com.br

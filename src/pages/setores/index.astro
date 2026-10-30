@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectorCard from '../../components/SectorCard.astro';
+import { sectors } from '../../data/sectors';
+import { breadcrumbSchema } from '../../schema';
+
+const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Setores' }];
+---
+<BaseLayout
+    title="Crédito embarcado por setor - Brücken"
+    description="Crédito embarcado para varejo e marketplaces, ERPs e SaaS, e plataformas de gig economy, decidido com os dados que cada plataforma já tem."
+    schema={[breadcrumbSchema(breadcrumbs, '/setores/')]}
+>
+    <PageHeader
+        breadcrumbs={breadcrumbs}
+        eyebrow="Setores"
+        title="Sua vertical, sua oferta de crédito"
+        lead="Cada tipo de plataforma gera dados diferentes sobre os seus clientes. Adaptamos o motor e a política ao que a sua já tem."
+        cta={false}
+    />
+
+    <section class="section">
+        <div class="container grid-3">
+            {sectors.map((s) => <SectorCard sector={s} />)}
+        </div>
+    </section>
+
+    <CtaBand track="setores" />
+</BaseLayout>

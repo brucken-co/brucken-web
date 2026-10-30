@@ -2,6 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DecisionPanel from '../components/DecisionPanel.astro';
 import Icon from '../components/Icon.astro';
+import SolutionCard from '../components/SolutionCard.astro';
+import SectorCard from '../components/SectorCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { solutions } from '../data/solutions';
+import { sectors } from '../data/sectors';
 import { site } from '../site';
 
 const facts = [
@@ -11,38 +16,6 @@ const facts = [
     { value: 'Sua política', label: 'sob seu controle, com cada decisão rastreável' },
 ];
 
-const solutions = [
-    {
-        tag: 'Consultoria',
-        title: 'Consultoria de crédito',
-        text: 'Estruturamos sua operação de crédito a partir dos seus dados e do momento do seu negócio.',
-        items: [
-            'Diagnóstico e política de concessão',
-            'Modelagem e critérios de risco',
-            'Precificação e régua de cobrança',
-        ],
-    },
-    {
-        tag: 'Tecnologia',
-        title: 'Motor de decisão',
-        text: 'Nossa engine roda dentro da sua plataforma via API. Você define a política; nós executamos cada decisão.',
-        items: [
-            'Engine embarcada via API REST',
-            'Decisões em tempo real (< 300 ms)',
-            'Integração com bureaus e fontes próprias',
-        ],
-    },
-    {
-        tag: 'Full service',
-        title: 'Operação completa',
-        text: 'Motor de decisão e gestão da operação juntos, para quem quer oferecer crédito sem montar um time interno.',
-        items: [
-            'Motor + gestão ponta a ponta',
-            'Monitoramento da carteira e indicadores',
-            'Calibração contínua dos modelos',
-        ],
-    },
-];
 
 const steps = [
     {
@@ -59,23 +32,6 @@ const steps = [
     },
 ];
 
-const sectors = [
-    {
-        icon: 'Store',
-        title: 'Varejo e marketplace',
-        text: 'Parcelamento e capital de giro para lojistas e compradores, com base no histórico de vendas na sua plataforma.',
-    },
-    {
-        icon: 'MonitorCog',
-        title: 'ERP e SaaS',
-        text: 'Crédito oferecido dentro do sistema, usando faturamento e fluxo de caixa que seus clientes já registram.',
-    },
-    {
-        icon: 'Bike',
-        title: 'Gig economy',
-        text: 'Antecipação e crédito para motoristas e entregadores, a partir do histórico de ganhos na plataforma.',
-    },
-] as const;
 ---
 <BaseLayout title="Brücken - Crédito na sua plataforma, decidido com os seus dados">
     <!-- Hero -->
@@ -89,8 +45,8 @@ const sectors = [
                     para oferecer crédito sob medida aos seus clientes — sem construir nada do zero.
                 </p>
                 <div class="hero__actions">
-                    <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-track="hero">
-                        Agendar conversa <Icon name="ArrowRight" size={18} />
+                    <a href={site.contactUrl} class="btn btn--primary" data-track="hero">
+                        {site.ctaLabel} <Icon name="ArrowRight" size={18} />
                     </a>
                     <a href="#solucoes" class="btn btn--secondary">Ver soluções</a>
                 </div>
@@ -144,20 +100,10 @@ const sectors = [
                 <h2>Três formas de trabalhar juntos</h2>
                 <p>Da estruturação da política à operação completa, no ritmo do seu negócio.</p>
             </div>
-            <div class="solutions">
-                {solutions.map((s) => (
-                    <article class="solution">
-                        <span class="solution__tag">{s.tag}</span>
-                        <h3>{s.title}</h3>
-                        <p>{s.text}</p>
-                        <ul role="list">
-                            {s.items.map((item) => (
-                                <li><Icon name="Check" size={16} strokeWidth={2} />{item}</li>
-                            ))}
-                        </ul>
-                    </article>
-                ))}
+            <div class="grid-3">
+                {solutions.map((s) => <SolutionCard solution={s} />)}
             </div>
+            <a href="/solucoes/" class="link-arrow section-more">Conhecer as soluções <Icon name="ArrowRight" size={16} /></a>
         </div>
     </section>
 
@@ -188,35 +134,13 @@ const sectors = [
                 <h2>Sua vertical, sua oferta de crédito</h2>
                 <p>Adaptamos o motor e a política aos dados que cada tipo de plataforma já gera.</p>
             </div>
-            <div class="sectors">
-                {sectors.map((s) => (
-                    <article class="sector">
-                        <span class="sector__icon"><Icon name={s.icon} size={22} /></span>
-                        <h3>{s.title}</h3>
-                        <p>{s.text}</p>
-                    </article>
-                ))}
+            <div class="grid-3">
+                {sectors.map((s) => <SectorCard sector={s} />)}
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="contato">
-        <div class="container cta__inner">
-            <div>
-                <h2>Vamos avaliar o potencial de crédito da sua base?</h2>
-                <p>Uma conversa de 30 minutos com nossos especialistas para entender seus dados e seus clientes.</p>
-            </div>
-            <div class="cta__actions">
-                <a href={site.bookingUrl} class="btn btn--on-dark" target="_blank" rel="noopener noreferrer" data-track="cta">
-                    <Icon name="CalendarDays" size={18} /> Agendar conversa
-                </a>
-                <a href={site.whatsappUrl} class="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" data-track="cta">
-                    <Icon name="MessageCircle" size={18} /> WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
+    <CtaBand id="contato" />
 </BaseLayout>
 
 <style>
@@ -304,61 +228,6 @@ const sectors = [
         align-content: end;
     }
 
-    /* Soluções */
-    .solutions {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
-
-    .solution {
-        display: flex;
-        flex-direction: column;
-        padding: 2rem;
-        background: var(--bg);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-    }
-
-    .solution__tag {
-        font-size: var(--text-xs);
-        font-weight: 600;
-        color: var(--brand-ink);
-        margin-bottom: 0.75rem;
-    }
-
-    .solution h3 {
-        font-size: var(--text-xl);
-    }
-
-    .solution p {
-        margin-top: 0.75rem;
-        color: var(--muted);
-        font-size: var(--text-sm);
-        flex-grow: 1;
-    }
-
-    .solution ul {
-        margin-top: 1.5rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid var(--line);
-        display: grid;
-        gap: 0.625rem;
-        font-size: var(--text-sm);
-    }
-
-    .solution li {
-        display: flex;
-        gap: 0.625rem;
-        align-items: start;
-    }
-
-    .solution li :global(svg) {
-        flex: none;
-        margin-top: 0.2rem;
-        color: var(--brand);
-    }
-
     /* Como funciona */
     .steps {
         display: grid;
@@ -391,71 +260,8 @@ const sectors = [
         font-size: var(--text-sm);
     }
 
-    /* Setores */
-    .sectors {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
-
-    .sector {
-        padding: 2rem;
-        background: var(--bg);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-    }
-
-    .sector__icon {
-        display: inline-grid;
-        place-items: center;
-        width: 44px;
-        height: 44px;
-        margin-bottom: 1.25rem;
-        border-radius: var(--radius);
-        background: var(--brand-tint);
-        color: var(--brand-ink);
-    }
-
-    .sector h3 {
-        font-size: var(--text-lg);
-    }
-
-    .sector p {
-        margin-top: 0.625rem;
-        color: var(--muted);
-        font-size: var(--text-sm);
-    }
-
-    /* CTA */
-    .cta {
-        background: var(--ink);
-        color: #C9D3E0;
-        padding-block: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
-    }
-
-    .cta__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2.5rem;
-    }
-
-    .cta h2 {
-        color: #fff;
-        font-size: var(--text-2xl);
-        max-width: 36rem;
-    }
-
-    .cta p {
-        margin-top: 0.75rem;
-        max-width: 36rem;
-    }
-
-    .cta__actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        flex: none;
+    .section-more {
+        margin-top: 2rem;
     }
 
     /* Responsivo */
@@ -477,15 +283,8 @@ const sectors = [
             border-top: 1px solid var(--line);
         }
 
-        .solutions,
-        .sectors,
         .steps {
             grid-template-columns: 1fr;
-        }
-
-        .cta__inner {
-            flex-direction: column;
-            align-items: start;
         }
     }
 
@@ -494,8 +293,7 @@ const sectors = [
             padding: 1.5rem 1rem;
         }
 
-        .hero__actions .btn,
-        .cta__actions .btn {
+        .hero__actions .btn {
             flex: 1 1 100%;
         }
     }

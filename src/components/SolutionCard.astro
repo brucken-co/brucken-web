@@ -1,0 +1,105 @@
+---
+import Icon from './Icon.astro';
+import type { Solution } from '../data/solutions';
+
+interface Props {
+    solution: Solution;
+}
+
+const { solution } = Astro.props;
+const href = `/solucoes/${solution.slug}/`;
+---
+<article class="solution-card">
+    <span class="solution-card__tag">{solution.tag}</span>
+    <h3><a href={href}>{solution.name}</a></h3>
+    <p>{solution.summary}</p>
+    <ul role="list">
+        {solution.highlights.map((item) => (
+            <li><Icon name="Check" size={16} strokeWidth={2} />{item}</li>
+        ))}
+    </ul>
+    <span class="link-arrow" aria-hidden="true">Saiba mais <Icon name="ArrowRight" size={16} /></span>
+</article>
+
+<style>
+    .solution-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        transition: border-color 0.15s ease;
+    }
+
+    .solution-card:hover {
+        border-color: var(--line-strong);
+    }
+
+    .solution-card__tag {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--brand-ink);
+        margin-bottom: 0.75rem;
+    }
+
+    .solution-card h3 {
+        font-size: var(--text-xl);
+    }
+
+    /* O card inteiro é clicável pelo link do título */
+    .solution-card h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .solution-card h3 a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+    }
+
+    .solution-card h3 a:focus-visible {
+        outline: none;
+    }
+
+    .solution-card:has(h3 a:focus-visible) {
+        outline: 2px solid var(--brand);
+        outline-offset: 3px;
+    }
+
+    .solution-card p {
+        margin-top: 0.75rem;
+        color: var(--muted);
+        font-size: var(--text-sm);
+        flex-grow: 1;
+    }
+
+    .solution-card ul {
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 0.625rem;
+        font-size: var(--text-sm);
+    }
+
+    .solution-card li {
+        display: flex;
+        gap: 0.625rem;
+        align-items: start;
+    }
+
+    .solution-card li :global(svg) {
+        flex: none;
+        margin-top: 0.2rem;
+        color: var(--brand);
+    }
+
+    .solution-card .link-arrow {
+        margin-top: 1.5rem;
+        color: var(--brand-ink);
+    }
+</style>

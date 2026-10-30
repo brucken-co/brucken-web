@@ -144,6 +144,53 @@ ul[role='list'] {
     color: var(--muted);
 }
 
+/* Grades */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.split-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+}
+
+.split-section h2 {
+    font-size: var(--text-2xl);
+}
+
+@media (max-width: 960px) {
+    .grid-3,
+    .split-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Lista com marcadores de check */
+.check-list {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.check-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: start;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-2);
+}
+
+.check-list li svg {
+    flex: none;
+    margin-top: 0.3rem;
+    color: var(--brand);
+}
+
 /* Botões */
 .btn {
     display: inline-flex;

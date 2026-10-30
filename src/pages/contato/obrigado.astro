@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../site';
+---
+<BaseLayout title="Recebemos seu contato - Brücken" noindex>
+    <section class="thanks">
+        <div class="container thanks__inner">
+            <span class="thanks__icon"><Icon name="CircleCheck" size={28} /></span>
+            <h1>Recebemos seu contato</h1>
+            <p>
+                Obrigado! Vamos analisar as informações sobre a sua plataforma e retornar em {site.responseTime},
+                pelo e-mail que você informou.
+            </p>
+            <div class="thanks__actions">
+                <a href="/solucoes/" class="btn btn--primary">Conhecer as soluções</a>
+                <a href="/" class="btn btn--secondary">Voltar ao início</a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .thanks {
+        padding-block: var(--space-section);
+    }
+
+    .thanks__inner {
+        max-width: calc(620px + 2 * var(--gutter));
+        text-align: center;
+    }
+
+    .thanks__icon {
+        display: inline-grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        margin-bottom: 1.5rem;
+        border-radius: 50%;
+        background: #E7F5EC;
+        color: var(--success);
+    }
+
+    .thanks h1 {
+        font-size: var(--text-2xl);
+    }
+
+    .thanks p {
+        margin-top: 1rem;
+        font-size: var(--text-lg);
+        color: var(--muted);
+    }
+
+    .thanks__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+</style>

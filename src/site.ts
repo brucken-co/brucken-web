@@ -8,8 +8,15 @@ export const site = {
     ogImage: '/images/og-brucken.png',
     logoFull: '/images/remove_bg_para_fundo_claro.png',
     gaId: 'G-LMKF2JBQ64',
-    bookingUrl:
-        'https://outlook.office.com/bookwithme/user/5ab278d9e15b4c3c904015c88078cbd0@brucken.com.br/meetingtype/x0If2nmsTEKxb4X2e7Q0lg2?anonymous&ismsaljsauthenabled&ep=mlink',
+    contactUrl: '/contato/',
+    ctaLabel: 'Quero avaliar o potencial da minha plataforma',
+    ctaLabelShort: 'Avaliar minha plataforma',
+    responseTime: 'até 1 semana',
+    // Formulário de contato → HubSpot (Marketing → Formulários → … → Incorporar)
+    hubspot: {
+        portalId: '52247392',
+        formId: 'd7415f49-8a33-4b69-9cd0-679d009a3b11',
+    },
     whatsappUrl:
         'https://wa.me/5519996661559?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Br%C3%BCcken!',
     phone: '+55-19-99666-1559',
@@ -19,8 +26,8 @@ export const site = {
 };
 
 export const nav = [
-    { label: 'Soluções', href: '/#solucoes' },
+    { label: 'Soluções', href: '/solucoes/' },
+    { label: 'Setores', href: '/setores/' },
     { label: 'Como funciona', href: '/#como-funciona' },
-    { label: 'Setores', href: '/#setores' },
-    { label: 'Contato', href: '/#contato' },
+    { label: 'Contato', href: '/contato/' },
 ];

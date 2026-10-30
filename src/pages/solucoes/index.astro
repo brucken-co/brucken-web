@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import { solutions } from '../../data/solutions';
+import { breadcrumbSchema } from '../../schema';
+
+const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Soluções' }];
+---
+<BaseLayout
+    title="Soluções de crédito embarcado - Brücken"
+    description="Consultoria de crédito, motor de decisão via API e full service: três formas de oferecer crédito na sua plataforma com a Brücken."
+    schema={[breadcrumbSchema(breadcrumbs, '/solucoes/')]}
+>
+    <PageHeader
+        breadcrumbs={breadcrumbs}
+        eyebrow="Soluções"
+        title="Três formas de trabalhar juntos"
+        lead="Da estruturação da política de crédito à operação completa. Escolha o formato que combina com o momento do seu negócio — e mude quando ele mudar."
+        cta={false}
+    />
+
+    <section class="section">
+        <div class="container grid-3">
+            {solutions.map((s) => <SolutionCard solution={s} />)}
+        </div>
+    </section>
+
+    <CtaBand track="solucoes" />
+</BaseLayout>

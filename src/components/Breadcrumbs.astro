@@ -1,0 +1,46 @@
+---
+// Trilha de navegação; o JSON-LD correspondente vem de breadcrumbSchema()
+interface Props {
+    items: { label: string; href?: string }[];
+}
+
+const { items } = Astro.props;
+---
+<nav class="breadcrumbs" aria-label="Você está em">
+    <ol role="list">
+        {items.map((item, i) => (
+            <li>
+                {item.href && i < items.length - 1
+                    ? <a href={item.href}>{item.label}</a>
+                    : <span aria-current="page">{item.label}</span>}
+            </li>
+        ))}
+    </ol>
+</nav>
+
+<style>
+    .breadcrumbs ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0;
+        list-style: none;
+        font-size: var(--text-sm);
+        color: var(--muted);
+    }
+
+    .breadcrumbs li + li::before {
+        content: '/';
+        margin-right: 0.5rem;
+        color: var(--line-strong);
+    }
+
+    .breadcrumbs a {
+        color: var(--muted);
+        text-decoration: none;
+    }
+
+    .breadcrumbs a:hover {
+        color: var(--ink);
+    }
+</style>
