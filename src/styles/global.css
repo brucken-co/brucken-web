@@ -20,7 +20,6 @@
 
     /* Tipografia */
     --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-serif: 'Source Serif 4 Variable', Georgia, serif;
     --font-mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
 
     --text-xs: 0.8125rem;
@@ -223,6 +222,48 @@ ul[role='list'] {
 
 .link-arrow:hover svg {
     transform: translateX(3px);
+}
+
+/* Texto longo (páginas legais e Insights) */
+.prose {
+    color: var(--ink-2);
+    line-height: 1.75;
+}
+
+.prose > * + * {
+    margin-top: 1.25rem;
+}
+
+.prose h2 {
+    margin-top: 3rem;
+    font-size: var(--text-xl);
+}
+
+.prose h3 {
+    margin-top: 2rem;
+    font-size: var(--text-lg);
+}
+
+.prose h2 + *,
+.prose h3 + * {
+    margin-top: 0.75rem;
+}
+
+.prose ul {
+    padding-left: 1.25rem;
+}
+
+.prose li + li {
+    margin-top: 0.5rem;
+}
+
+.prose li::marker {
+    color: var(--brand);
+}
+
+.prose strong {
+    color: var(--ink);
+    font-weight: 600;
 }
 
 .visually-hidden {

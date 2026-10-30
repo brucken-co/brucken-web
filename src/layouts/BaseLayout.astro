@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { site } from '../site';
 
 interface Props {
@@ -20,7 +21,7 @@ const organization = {
     '@type': 'Organization',
     name: site.name,
     url: `${site.url}/`,
-    logo: new URL(site.ogImage, site.url).href,
+    logo: new URL(site.logoFull, site.url).href,
     description: 'Motor de decisão e consultoria de crédito embarcado para varejo, marketplaces, ERPs, SaaS e gig economy.',
     contactPoint: {
         '@type': 'ContactPoint',
@@ -48,16 +49,23 @@ const organization = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Brücken — Crédito na sua plataforma, decidido com os seus dados" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="application/ld+json" set:html={JSON.stringify(organization)} />
 
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>
-    <script is:inline define:vars={{ gaId: site.gaId }}>
+    <!-- GA4 com modo de consentimento: o script só é carregado após o "Aceitar" (CookieConsent) -->
+    <script is:inline>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaId);
+        window.gtag = function(){dataLayer.push(arguments);};
+        gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
     </script>
 </head>
 <body>
@@ -67,6 +75,7 @@ const organization = {
         <slot />
     </main>
     <Footer />
+    <CookieConsent />
 
     <script>
         // Envia cliques em CTAs ao GA4
