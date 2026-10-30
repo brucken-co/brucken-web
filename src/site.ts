@@ -14,8 +14,8 @@ export const site = {
     responseTime: 'até 1 semana',
     // Formulário de contato → HubSpot (Marketing → Formulários → … → Incorporar)
     hubspot: {
-        portalId: '',
-        formId: '',
+        portalId: '52247392',
+        formId: 'd7415f49-8a33-4b69-9cd0-679d009a3b11',
     },
     whatsappUrl:
         'https://wa.me/5519996661559?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20Br%C3%BCcken!',
