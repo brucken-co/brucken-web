@@ -103,23 +103,23 @@ export const sectors: Sector[] = [
     },
     {
         slug: 'gig-economy',
-        icon: 'Bike',
+        icon: 'Users',
         name: 'Gig economy',
-        title: 'Crédito para plataformas de gig economy',
+        title: 'Crédito para profissionais da gig economy',
         metaDescription:
-            'Crédito embarcado para plataformas de gig economy: antecipação e crédito para motoristas e entregadores com base no histórico de ganhos na plataforma.',
+            'Crédito embarcado para plataformas de gig economy e creator economy: antecipação e crédito para motoristas, entregadores, criadores de conteúdo e outros profissionais, com base no histórico de ganhos.',
         summary:
-            'Antecipação e crédito para motoristas e entregadores, a partir do histórico de ganhos na plataforma.',
+            'Antecipação e crédito para motoristas, entregadores, criadores de conteúdo e outros profissionais, a partir do histórico de ganhos na plataforma.',
         lead:
-            'Ofereça antecipação e crédito para motoristas, entregadores e outros profissionais, a partir do histórico de ganhos que eles já têm na sua plataforma.',
+            'Ofereça antecipação e crédito a quem gera renda pela sua plataforma — motoristas, entregadores, criadores de conteúdo, prestadores de serviço e freelancers —, a partir do histórico de ganhos que eles já têm nela.',
         useCases: [
             {
                 title: 'Antecipação de ganhos',
-                text: 'Acesso antecipado a valores que o profissional já tem a receber pela plataforma.',
+                text: 'Acesso antecipado a valores que o profissional já tem a receber pela plataforma — corridas, entregas, serviços prestados ou receitas de monetização.',
             },
             {
                 title: 'Crédito para trabalhar',
-                text: 'Crédito para manutenção do veículo, equipamentos e outras necessidades ligadas à atividade.',
+                text: 'Crédito para veículo, equipamentos de gravação, ferramentas e outras necessidades ligadas à atividade.',
             },
             {
                 title: 'Limites que acompanham a atividade',
@@ -130,9 +130,14 @@ export const sectors: Sector[] = [
             'Histórico de ganhos e repasses',
             'Frequência e regularidade da atividade',
             'Tempo de atuação na plataforma',
+            'Audiência e receitas de monetização, no caso de criadores de conteúdo',
             'Informações de bureaus de crédito',
         ],
         faq: [
+            {
+                q: 'Quais profissionais podem receber crédito?',
+                a: 'Quem gera renda pela sua plataforma: motoristas, entregadores, criadores de conteúdo, prestadores de serviço, freelancers e outros. A política de crédito define quem é elegível e em que condições.',
+            },
             {
                 q: 'Onde o crédito aparece para o profissional?',
                 a: 'Dentro do aplicativo da sua plataforma, com a sua marca. A decisão roda nos bastidores.',
