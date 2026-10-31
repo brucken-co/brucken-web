@@ -21,6 +21,7 @@ Como funciona: (1) a Brücken conecta as fontes de dados existentes via API ou a
   - [Varejo e marketplace](https://brucken.com.br/setores/varejo-e-marketplace/)
   - [ERP e SaaS](https://brucken.com.br/setores/erp-e-saas/)
   - [Gig economy](https://brucken.com.br/setores/gig-economy/)
+- [Cases](https://brucken.com.br/cases/): crédito consignado para trabalhadores CLT em uma empresa de benefícios (consultoria: políticas de crédito e direção do time interno do cliente) e crédito para motoristas (full service: software de decisão e políticas de crédito). Clientes não identificados por confidencialidade.
 - [Política de Privacidade e Proteção de Dados](https://brucken.com.br/privacidade/): tratamento de dados pessoais nos termos da LGPD e contato do Encarregado (DPO)
 
 ## Contato

@@ -5,6 +5,8 @@ import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import SolutionCard from '../../components/SolutionCard.astro';
 import Icon from '../../components/Icon.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { cases } from '../../data/cases';
 import { sectors, type Sector } from '../../data/sectors';
 import { solutions } from '../../data/solutions';
 import { breadcrumbSchema, faqSchema } from '../../schema';
@@ -19,6 +21,7 @@ interface Props {
 
 const { sector } = Astro.props;
 const path = `/setores/${sector.slug}/`;
+const related = cases.filter((c) => c.sector?.slug === sector.slug);
 const breadcrumbs = [
     { label: 'Início', href: '/' },
     { label: 'Setores', href: '/setores/' },
@@ -80,7 +83,21 @@ const breadcrumbs = [
         </div>
     </section>
 
-    <section class="section section--subtle">
+    {related.length > 0 && (
+        <section class="section section--subtle">
+            <div class="container split-section">
+                <div>
+                    <span class="eyebrow">Case</span>
+                    <h2>Na prática</h2>
+                </div>
+                <div class="related-cases">
+                    {related.map((item) => <CaseCard item={item} />)}
+                </div>
+            </div>
+        </section>
+    )}
+
+    <section class:list={['section', { 'section--subtle': related.length === 0 }]}>
         <div class="container split-section">
             <div>
                 <span class="eyebrow">Perguntas frequentes</span>
@@ -107,6 +124,11 @@ const breadcrumbs = [
         margin-top: 0.625rem;
         color: var(--muted);
         font-size: var(--text-sm);
+    }
+
+    .related-cases {
+        display: grid;
+        gap: 1.5rem;
     }
 
     .signals__note {

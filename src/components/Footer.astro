@@ -16,6 +16,7 @@ const year = new Date().getFullYear();
                 <h2>Soluções</h2>
                 <ul role="list">
                     {solutions.map((item) => <li><a href={`/solucoes/${item.slug}/`}>{item.name}</a></li>)}
+                    <li><a href="/cases/">Cases</a></li>
                 </ul>
             </nav>
 
