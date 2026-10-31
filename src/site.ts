@@ -28,6 +28,7 @@ export const site = {
 export const nav = [
     { label: 'Soluções', href: '/solucoes/' },
     { label: 'Setores', href: '/setores/' },
+    { label: 'Cases', href: '/cases/' },
     { label: 'Como funciona', href: '/#como-funciona' },
     { label: 'Contato', href: '/contato/' },
 ];
