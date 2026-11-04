@@ -22,6 +22,8 @@ const organization = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: site.name,
+    legalName: site.company.legalName,
+    taxID: site.company.cnpj,
     url: `${site.url}/`,
     logo: new URL(site.logoFull, site.url).href,
     description: 'Motor de decisão e consultoria de crédito embarcado para varejo, marketplaces, ERPs, SaaS e gig economy.',

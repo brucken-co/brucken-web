@@ -39,7 +39,12 @@ const year = new Date().getFullYear();
         </div>
 
         <div class="site-footer__legal">
-            <p>&copy; {year} Brücken. Todos os direitos reservados.</p>
+            <div class="site-footer__company">
+                <p>&copy; {year} Brücken. Todos os direitos reservados.</p>
+                <p>
+                    {site.company.legalName} · Nome fantasia: {site.company.tradeName} · CNPJ {site.company.cnpj}
+                </p>
+            </div>
             <a href="#" data-cookie-settings>Preferências de cookies</a>
         </div>
     </div>
@@ -101,6 +106,10 @@ const year = new Date().getFullYear();
         border-top: 1px solid var(--line);
         color: var(--muted);
         font-size: var(--text-xs);
+    }
+
+    .site-footer__company p + p {
+        margin-top: 0.25rem;
     }
 
     @media (max-width: 760px) {

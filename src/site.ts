@@ -23,6 +23,12 @@ export const site = {
     linkedinUrl: 'https://www.linkedin.com/in/guilherme-benito-528265/',
     privacyUrl: '/privacidade/',
     privacyPdfUrl: '/docs/politica-lgpd.pdf',
+    // Dados cadastrais (Comprovante de Inscrição CNPJ)
+    company: {
+        legalName: 'Juquiri Assessoria e Consultoria Ltda.',
+        tradeName: 'Brucken Consultoria e Assessoria',
+        cnpj: '48.739.505/0001-07',
+    },
 };
 
 export const nav = [
