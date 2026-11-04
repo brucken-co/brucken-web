@@ -10,7 +10,9 @@ const { item } = Astro.props;
 ---
 <article class="case-card">
     <div class="case-card__top">
-        <span class="case-card__icon"><Icon name={item.icon} size={20} /></span>
+        {item.clientLogo
+            ? <img class="case-card__logo" src={item.clientLogo} alt={item.client} width="131" height="40" loading="lazy" />
+            : <span class="case-card__icon"><Icon name={item.icon} size={20} /></span>}
         <span class="case-card__tag">{item.solution.name}</span>
     </div>
     <span class="case-card__client">{item.client}</span>
@@ -50,6 +52,11 @@ const { item } = Astro.props;
         border-radius: var(--radius);
         background: var(--brand-tint);
         color: var(--brand-ink);
+    }
+
+    .case-card__logo {
+        height: 32px;
+        width: auto;
     }
 
     .case-card__tag {
