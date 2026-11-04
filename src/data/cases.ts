@@ -1,4 +1,4 @@
-// Casos de uso exibidos em /cases/. Clientes anonimizados até a validação com cada um.
+// Casos de uso exibidos em /cases/. Cliente só é identificado depois de autorizar a divulgação.
 import type * as icons from 'lucide-static';
 
 export interface Case {
@@ -6,6 +6,8 @@ export interface Case {
     icon: keyof typeof icons;
     title: string;
     client: string;
+    clientLogo?: string;
+    clientUrl?: string;
     product: string;
     solution: { name: string; slug: string };
     sector?: { name: string; slug: string };
@@ -37,14 +39,16 @@ export const cases: Case[] = [
         id: 'credito-para-motoristas',
         icon: 'Car',
         title: 'Crédito para motoristas',
-        client: 'Operação de crédito para motoristas',
+        client: 'Giros',
+        clientLogo: '/images/clientes/giros.svg',
+        clientUrl: 'https://giros.app/',
         product: 'Crédito para motoristas',
         solution: { name: 'Full service', slug: 'full-service' },
         sector: { name: 'Gig economy', slug: 'gig-economy' },
         summary:
-            'Um produto de crédito para motoristas com o software de decisão e as políticas de crédito criados pela Brücken.',
+            'A Giros oferece crédito a motoristas de aplicativo com o software de decisão e as políticas de crédito criados pela Brücken.',
         context:
-            'O cliente queria oferecer crédito a motoristas sem precisar construir internamente a tecnologia de decisão nem a política de crédito.',
+            'A Giros oferece crédito a motoristas de aplicativo, entregadores e motoristas de frete usando os ganhos nas corridas como comprovante de renda, sem holerite, com parcela semanal por Pix Automático. Para isso, precisava de uma tecnologia de decisão e de uma política de crédito feitas para esse público.',
         work: [
             'Criamos o software de decisão de crédito usado na operação.',
             'Desenvolvemos as políticas de crédito para motoristas.',

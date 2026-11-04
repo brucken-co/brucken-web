@@ -10,14 +10,14 @@ const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Cases' }];
 ---
 <BaseLayout
     title="Cases de crédito embarcado - Brücken"
-    description="Casos de uso da Brücken: crédito consignado para trabalhadores CLT em uma empresa de benefícios (consultoria) e crédito para motoristas (full service)."
+    description="Casos de uso da Brücken: crédito consignado para trabalhadores CLT em uma empresa de benefícios (consultoria) e crédito para motoristas de aplicativo com a Giros (full service)."
     schema={[breadcrumbSchema(breadcrumbs, '/cases/')]}
 >
     <PageHeader
         breadcrumbs={breadcrumbs}
         eyebrow="Cases"
         title="Projetos de crédito que já entregamos"
-        lead="Dois projetos em que a Brücken desenhou a política de crédito — e, em um deles, também o software de decisão. Por confidencialidade, os clientes não são identificados."
+        lead="Dois projetos em que a Brücken desenhou a política de crédito — e, em um deles, também o software de decisão. Clientes só são identificados com autorização."
         cta={false}
     />
 
@@ -34,11 +34,17 @@ const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Cases' }];
         <section class:list={['section', 'case', { 'section--subtle': i % 2 === 1 }]} id={item.id} aria-labelledby={`${item.id}-title`}>
             <div class="container case__grid">
                 <aside class="case__meta">
-                    <span class="case__icon"><Icon name={item.icon} size={24} /></span>
+                    {item.clientLogo
+                        ? <img class="case__logo" src={item.clientLogo} alt={item.client} width="160" height="49" loading="lazy" />
+                        : <span class="case__icon"><Icon name={item.icon} size={24} /></span>}
                     <dl>
                         <div>
                             <dt>Cliente</dt>
-                            <dd>{item.client}</dd>
+                            <dd>
+                                {item.clientUrl
+                                    ? <a href={item.clientUrl} target="_blank" rel="noopener">{item.client} <Icon name="ArrowUpRight" size={14} /></a>
+                                    : item.client}
+                            </dd>
                         </div>
                         <div>
                             <dt>Produto</dt>
@@ -137,6 +143,18 @@ const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Cases' }];
         border-radius: var(--radius);
         background: var(--brand-tint);
         color: var(--brand-ink);
+    }
+
+    .case__logo {
+        height: 40px;
+        width: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .case__meta dd a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
     }
 
     .case__meta dl {
