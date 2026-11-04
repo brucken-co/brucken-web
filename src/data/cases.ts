@@ -22,13 +22,15 @@ export const cases: Case[] = [
         id: 'credito-consignado-clt',
         icon: 'BriefcaseBusiness',
         title: 'Crédito consignado para trabalhadores CLT',
-        client: 'Empresa de benefícios',
+        client: 'Caju Benefícios',
+        clientLogo: '/images/clientes/caju.svg',
+        clientUrl: 'https://www.caju.com.br/',
         product: 'Crédito consignado para trabalhadores CLT',
         solution: { name: 'Consultoria de crédito', slug: 'consultoria-de-credito' },
         summary:
-            'Uma empresa de benefícios desenvolveu, com a Brücken, um produto de crédito consignado para trabalhadores CLT.',
+            'A Caju Benefícios desenvolveu, com a Brücken, um produto de crédito consignado para trabalhadores CLT.',
         context:
-            'A empresa de benefícios queria oferecer crédito consignado aos trabalhadores CLT atendidos pela sua plataforma, conduzindo a operação com o próprio time interno.',
+            'A Caju centraliza benefícios, despesas e gestão de pessoas em uma única plataforma. A empresa queria oferecer crédito consignado aos trabalhadores CLT atendidos por ela, conduzindo a operação com o próprio time interno.',
         work: [
             'Desenvolvemos as políticas de crédito do produto de consignado.',
             'Direcionamos o time interno do cliente, que ficou responsável pela operação.',

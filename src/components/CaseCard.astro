@@ -11,7 +11,7 @@ const { item } = Astro.props;
 <article class="case-card">
     <div class="case-card__top">
         {item.clientLogo
-            ? <img class="case-card__logo" src={item.clientLogo} alt={item.client} width="131" height="40" loading="lazy" />
+            ? <img class="case-card__logo" src={item.clientLogo} alt={item.client} height="32" loading="lazy" />
             : <span class="case-card__icon"><Icon name={item.icon} size={20} /></span>}
         <span class="case-card__tag">{item.solution.name}</span>
     </div>

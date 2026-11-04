@@ -10,14 +10,14 @@ const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Cases' }];
 ---
 <BaseLayout
     title="Cases de crédito embarcado - Brücken"
-    description="Casos de uso da Brücken: crédito consignado para trabalhadores CLT em uma empresa de benefícios (consultoria) e crédito para motoristas de aplicativo com a Giros (full service)."
+    description="Casos de uso da Brücken: crédito consignado para trabalhadores CLT com a Caju Benefícios (consultoria) e crédito para motoristas de aplicativo com a Giros (full service)."
     schema={[breadcrumbSchema(breadcrumbs, '/cases/')]}
 >
     <PageHeader
         breadcrumbs={breadcrumbs}
         eyebrow="Cases"
         title="Projetos de crédito que já entregamos"
-        lead="Dois projetos em que a Brücken desenhou a política de crédito — e, em um deles, também o software de decisão. Clientes só são identificados com autorização."
+        lead="Dois projetos em que a Brücken desenhou a política de crédito — e, em um deles, também o software de decisão."
         cta={false}
     />
 
@@ -35,7 +35,7 @@ const breadcrumbs = [{ label: 'Início', href: '/' }, { label: 'Cases' }];
             <div class="container case__grid">
                 <aside class="case__meta">
                     {item.clientLogo
-                        ? <img class="case__logo" src={item.clientLogo} alt={item.client} width="160" height="49" loading="lazy" />
+                        ? <img class="case__logo" src={item.clientLogo} alt={item.client} height="40" loading="lazy" />
                         : <span class="case__icon"><Icon name={item.icon} size={24} /></span>}
                     <dl>
                         <div>
