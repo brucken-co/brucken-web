@@ -32,8 +32,8 @@ export const cases: Case[] = [
         context:
             'A Caju centraliza benefícios, despesas e gestão de pessoas em uma única plataforma. A empresa queria oferecer crédito consignado aos trabalhadores CLT atendidos por ela, conduzindo a operação com o próprio time interno.',
         work: [
-            'Desenvolvemos as políticas de crédito do produto de consignado.',
-            'Direcionamos o time interno do cliente, que ficou responsável pela operação.',
+            'Desenvolvemos as políticas de crédito e precificação do produto de consignado.',
+            'Direcionamos o time interno do cliente, com foco em definição de processos, planejamento do time analítico, metodologia de monitoramento e de avaliação de rentabilidade.',
         ],
         role: 'A Brücken atuou como consultoria: as políticas e a direção vieram da Brücken; a operação ficou com o time do cliente.',
     },
